@@ -60,14 +60,14 @@ article section.white {
   width: 600px;
 }
 
-:not(pre) > code[class*="language-"], 
+:not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   width: 800px;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.5);
 }
 
-.long :not(pre) > code[class*="language-"], 
+.long :not(pre) > code[class*="language-"],
 .long pre[class*="language-"] {
   width: 960px;
 }
@@ -91,7 +91,7 @@ article.start::before {
   -webkit-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
   -moz-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
   filter: blur(2.25px) grayscale(0.3) brightness(0.4);
-  background-image: url("../img/zen.jpg");
+  background-image: url("../img/public.gif");
 }
 
 article.developer::before {
@@ -102,11 +102,11 @@ article.developer::before {
   background-position: top;
 }
 
-article.steamclock::before {
+article.auth0::before {
   -webkit-filter: blur(5.5px) grayscale(0.3) brightness(0.4);
   -moz-filter: blur(5.5px) grayscale(0.3) brightness(0.4);
   filter: blur(5.5px) grayscale(0.3) brightness(0.4);
-  background-image: url("../img/steamclock.jpg");
+  background-image: url("../img/a0.png");
 }
 
 article.beta::before {
@@ -123,83 +123,6 @@ article.js::before {
   background-image: url("../img/js.png");
 }
 
-article.love::before {
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
-  background-image: url("../img/love.gif");
-}
-
-article.rewind::before {
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
-  background-image: url("../img/rewind.gif");
-}
-
-article.really::before {
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
-  background-image: url("../img/really.gif");
-}
-
-article.rabid::before {
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
-  background-image: url("../img/rabid.gif");
-}
-
-article.omg::before {
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
-  background-image: url("../img/omg.gif");
-}
-
-article section span.green {
-  font-color: #00CC00;
-}
-
-
-
-article.proud::before {
-  -webkit-filter: grayscale(0) brightness(1);
-  -moz-filter: grayscale(0) brightness(1);
-  filter: grayscale(0) brightness(1);
-  background-image: url("../img/proud.gif");
-  background-position: top;
-}
-
-article.notcool::before {
-  -webkit-filter: blur(1px) grayscale(0.3) brightness(0.1);
-  -moz-filter: blur(1px) grayscale(0.3) brightness(0.1);
-  filter: blur(1px) grayscale(0.3) brightness(0.1);
-  background-image: url("../img/notcool.jpg");
-}
-
-article.notcool-joey::before {
-  -webkit-filter: grayscale(0) brightness(1);
-  -moz-filter: grayscale(0) brightness(1);
-  filter: grayscale(0) brightness(1);
-  background-image: url("../img/joey.gif");
-}
-
-article.bowling::before {
-  -webkit-filter: grayscale(0) brightness(1);
-  -moz-filter: grayscale(0) brightness(1);
-  filter: grayscale(0) brightness(1);
-  background-image: url("../img/bowling.gif");
-}
-
-article.the-end::before {
-  -webkit-filter: grayscale(0) brightness(1);
-  -moz-filter: grayscale(0) brightness(1);
-  filter: grayscale(0) brightness(1);
-  background-image: url("../img/ironman.gif");
-}
-
 article.programming::before {
   -webkit-filter: none;
   -moz-filter: none;
@@ -208,10 +131,64 @@ article.programming::before {
   background-image: url("../img/programming.gif");
 }
 
-article.programming {
+article.programming, article.safari {
   background-color: white;
   opacity: 0.95;
 }
+
+article.advocate::before {
+  -webkit-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  -moz-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  background-image: url("../img/advocate.jpg");
+}
+
+article.smoke::before {
+  -webkit-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  -moz-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  background-image: url("../img/smoke.gif");
+}
+
+article.old-web::before {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+  background-size: contain;
+  background-image: url("../img/SpaceJam.gif");
+}
+
+article.current-web::before {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+  background-size: contain;
+  background-image: url("../img/Auth0.gif");
+}
+
+article.lost::before {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+  background-image: url("../img/lost.gif");
+}
+
+article.persian-cat::before {
+  -webkit-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  -moz-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  background-image: url("../img/persian.jpg");
+}
+
+article.not-cool::before {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+  background-image: url("../img/notcool.gif");
+}
+
+
+
 
 .profile {
   margin: 0 auto;
