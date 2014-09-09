@@ -247,7 +247,12 @@
         <div class="content">
           <h2>Hi There</h2>
           <h4>Do you want to see a beautiful cat?</h4>
-          <input onclick="alert('You shouldn\'t have touched this');" type="submit" value="Please click here to continue" />
+          <input onclick="alert('You shouldn\'t have touched this');bespoke.next();" type="submit" value="Please click here to continue" />
+        </div>
+      </section>
+
+      <section data-bespoke-state="boom">
+        <div class="content">
         </div>
       </section>
 
@@ -535,7 +540,7 @@ app.post('/api/change-email', function(req, res) {
         <div class="content">
           <div class="byline">
             <div class="classy">
-              Chuch suggests
+              Chuck suggests
             </div>
           </div>
           <h3>Using tokens</h3>
@@ -549,10 +554,214 @@ app.post('/api/change-email', function(req, res) {
         </div>
       </section>
 
+      <section data-bespoke-state="boom-save">
+        <div class="content"></div>
+      </section>
+
       <section data-bespoke-state="subject-change">
         <div class="content">
           <h2>APIs</h2>
         </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              creating a
+            </div>
+          </div>
+          <h3>SPA</h3>
+          <div class="byline">
+            <div class="classy">
+              means
+            </div>
+          </div>
+          <h3>Exposing an API</h3>
+          <div class="byline">
+            <div class="classy">
+              as well
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <h3>Anybody can call this API</h3>
+        </div>
+      </section>
+
+      <section data-bespoke-state="sub-subject-change">
+        <div class="content">
+          <h2>Request Limit Rate</h2>
+        </div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+          <pre><code class="language-javascript">for(var i = 0; i < 10000000; i++) {
+  request({
+    url: 'http://yourserver.com/api/signup',
+    json: {
+      name: 'Gonto' + i,
+      email: 'gonto@gonto' + i + '.com'
+    }
+  });
+}</code></pre>
+        </div>
+      </section>
+
+      <section data-bespoke-state="boom">
+        <div class="content">
+        </div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+          <pre><code class="language-javascript">var RateLimiter = require('limiter').RateLimiter;
+// Allow 150 requests per hour (the Twitter search limit)
+var limiter = new RateLimiter(150, 'hour');
+
+var rateMiddleware = createExpressMiddleware(limiter);
+
+app.post('/api/signup', rateMiddleware, function(req, res) {
+  // Custom signup logic
+});</code></pre>
+        </div>
+      </section>
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuck says
+            </div>
+          </div>
+          <h3>Our Signup API</h3>
+          <div class="byline">
+            <div class="classy">
+              should have
+            </div>
+          </div>
+          <h3>a Captcha or something similar</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuck says
+            </div>
+          </div>
+          <h3>Our API</h3>
+          <div class="byline">
+            <div class="classy">
+              should have
+            </div>
+          </div>
+          <h3>Request throtling</h3>
+          <div class="byline">
+            <div class="classy">
+              to avoid
+            </div>
+          </div>
+          <h3>DDoS atacks</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="boom-save">
+        <div class="content"></div>
+      </section>
+
+      <section data-bespoke-state="sub-subject-change">
+        <div class="content">
+          <h2>Sanitizing parameters</h2>
+        </div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+          <pre><code class="language-javascript">request({
+  url: 'http://yourserver.com/api/users?id[$exists]=true',
+  method: 'GET'
+});</code></pre>
+<p></p>
+<pre><code class="language-javascript"> // Server
+app.get('/users', function (req, res) {
+   db.collections('customers').findOne({_id: req.query.id}, function (err, customer) {
+      res.json(customer);
+   });
+});</code></pre>
+        </div>
+      </section>
+
+      <section data-bespoke-state="boom">
+        <div class="content"></div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+          <pre><code class="language-javascript">var validate = require('isvalid-express');
+var getUserValidationSchema = {
+    "id": { type: Number, required: true }
+};
+
+app.get('/users', validate.query(getUserValidationSchema), function (req, res) {
+   db.collections('customers').findOne({_id: req.query.id}, function (err, customer) {
+      res.json(customer);
+   });
+});</code></pre>
+        </div>
+      </section>
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuck says that
+            </div>
+          </div>
+          <h3>Using JSon Schema Validation</h3>
+          <div class="byline">
+            <div class="classy">
+              is always a
+            </div>
+          </div>
+          <h3>good idea</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuck says that it also
+            </div>
+          </div>
+          <h3>helps you document </h3>
+          <div class="byline">
+            <div class="classy">
+              your
+            </div>
+          </div>
+          <h3>API</h3>
+          <div class="byline">
+            <div class="classy">
+              if you plan to
+            </div>
+          </div>
+          <h3>expose it</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="boom-save">
+        <div class="content"></div>
       </section>
 
       <section data-bespoke-state="subject-change">
@@ -564,9 +773,128 @@ app.post('/api/change-email', function(req, res) {
       <section>
         <div class="content">
           <input type="submit" value="Go to unsafe URL" onclick="goToUnsafeUrl()" />
+          <input type="submit" value="Clean params" onclick="cleanParams()" />
         </div>
       </section>
 
+      <section data-bespoke-state="boom">
+        <div class="content">
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              XSS means
+            </div>
+          </div>
+          <h3>Inserting</h3>
+          <div class="byline">
+            <div class="classy">
+              a
+            </div>
+          </div>
+          <h3>Javascript Snippet</h3>
+          <div class="byline">
+            <div class="classy">
+              that can be
+            </div>
+          </div>
+          <h3>saved on the server</h3>
+          <div class="byline">
+            <div class="classy">
+              and run for
+            </div>
+          </div>
+          <h3>Several users</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+
+      <section>
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              As
+            </div>
+          </div>
+          <h3>Tokens</h3>
+          <div class="byline">
+            <div class="classy">
+              can be
+            </div>
+          </div>
+          <h3>Accessed</h3>
+          <div class="byline">
+            <div class="classy">
+              from
+            </div>
+          </div>
+          <h3>Javascript</h3>
+          <div class="byline">
+            <div class="classy">
+              they're
+            </div>
+          </div>
+          <h3>vulnerable</h3>
+          <div class="byline">
+            <div class="classy">
+              to this atack
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <div class="unbrokenline"></div>
+          <h3>HTTP Only Cookies</h3>
+          <div class="byline">
+            <div class="classy">
+              are
+            </div>
+          </div>
+          <h3>not vulnerable</h3>
+          <div class="byline">
+            <div class="classy">
+              to this atack since they
+            </div>
+          </div>
+          <h3>can't be accessed</h3>
+          <div class="byline">
+            <div class="classy">
+              from
+            </div>
+          </div>
+          <h3>Javascript</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuck recommends
+            </div>
+          </div>
+          <h3>Sanitizing all HTML &amp; JS inputs</h3>
+          <div class="byline">
+            <div class="classy">
+              since that will make it
+            </div>
+          </div>
+          <h3>harder to insert a XSS</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="boom-save">
+        <div class="content">
+        </div>
+      </section>
 
 
       <section>

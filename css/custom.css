@@ -210,6 +210,15 @@ article.subject-change::before {
   background: green;
 }
 
+article.sub-subject-change::before {
+  -webkit-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  -moz-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  filter: blur(2.25px) grayscale(0.3) brightness(0.4);
+  background: gray;
+}
+
+
+
 article.dive::before {
   -webkit-filter: none;
   -moz-filter: none;
@@ -224,6 +233,22 @@ article.dump-elephant::before {
   filter: none;
   background-position: top;
   background-image: url("../img/dump-elephant.gif");
+}
+
+article.boom::before {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+  background-position: top;
+  background-image: url("../img/boom.gif");
+}
+
+article.boom-save::before {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+  background-position: top;
+  background-image: url("../img/boom-save.gif");
 }
 
 

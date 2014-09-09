@@ -7,3 +7,7 @@ if (location.search) {
 function goToUnsafeUrl() {
   location.href= location.origin + location.pathname + '?run=alert("Hola a todos :)");' + location.hash
 }
+
+function cleanParams() {
+  location.href= location.origin + location.pathname + location.hash
+}
