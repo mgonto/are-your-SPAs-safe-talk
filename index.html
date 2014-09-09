@@ -109,7 +109,12 @@
 
       <section>
         <div class="content">
-          <h2>So Let's start</h3>
+          <h2>So Let's dive into the talk</h3>
+        </div>
+      </section>
+
+      <section data-bespoke-state="dive">
+        <div class="content">
         </div>
       </section>
 
@@ -232,7 +237,7 @@
         </div>
       </section>
 
-      <section>
+      <section data-bespoke-state="subject-change">
         <div class="content">
           <h2>XSRF</h2>
         </div>
@@ -255,7 +260,7 @@
       <section data-bespoke-state="code long">
         <div class="content nofade">
           <pre data-line="1" ><code class="language-markup">&lt;form method=&quot;POST&quot; action=&quot;http://url-user-is-registered.com/change-email&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;email&quot; value=&quot;malicious@email.com&quot; /&gt;
+  &lt;input type=&quot;hidden&quot; id=&quot;email&quot; value=&quot;malicious@email.com&quot; /&gt;
   &lt;input type=&quot;submit&quot; value=&quot;Click here to continue&quot; /&gt;
 &lt;/form&gt;
 </code></pre>
@@ -266,7 +271,7 @@
       <section data-bespoke-state="code long">
         <div class="content nofade">
           <pre data-line="2" ><code class="language-markup">&lt;form method=&quot;POST&quot; action=&quot;http://url-user-is-registered.com/change-email&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;email&quot; value=&quot;malicious@email.com&quot; /&gt;
+  &lt;input type=&quot;hidden&quot; id=&quot;email&quot; value=&quot;malicious@email.com&quot; /&gt;
   &lt;input type=&quot;submit&quot; value=&quot;Click here to continue&quot; /&gt;
 &lt;/form&gt;
 </code></pre>
@@ -277,7 +282,7 @@
       <section data-bespoke-state="code long">
         <div class="content nofade">
           <pre data-line="3" ><code class="language-markup">&lt;form method=&quot;POST&quot; action=&quot;http://url-user-is-registered.com/change-email&quot;&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;email&quot; value=&quot;malicious@email.com&quot; /&gt;
+  &lt;input type=&quot;hidden&quot; id=&quot;email&quot; value=&quot;malicious@email.com&quot; /&gt;
   &lt;input type=&quot;submit&quot; value=&quot;Click here to continue&quot; /&gt;
 &lt;/form&gt;
 </code></pre>
@@ -298,31 +303,259 @@
 
       <section>
         <div class="content">
+          <h2>So how do we prevent it in SPAs?</h2>
+        </div>
+      </section>
+
+      <section data-bespoke-state="options">
+        <div class="content">
+          <h2>Option 1</h2>
           <div class="byline">
             <div class="classy">
-              In our
+              use
             </div>
           </div>
-          <h3>SPA</h3>
-          <div class="byline">
-            <div class="classy">
-              we are
-            </div>
-          </div>
-          <h3>using tokens</h3>
+          <h3>Tokens</h3>
           <div class="unbrokenline"></div>
-          <h3>NOT cookies</h3>
+        </div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+        <pre><code class="language-markup">&lt;!-- This form will be rendered by the SPA as a template --&gt;
+&lt;form&gt;
+  &lt;input type=&quot;text&quot; id=&quot;email&quot;/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Click here to continue&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+<p></p>
+          <pre data-line="7,8"><code class="language-javascript">$.ajax({
+  url: '/api/change-email',
+  data: {
+    email: form.email
+  },
+  headers: {
+    // We get the token from the logged in user. We store it in Local Storage
+    Authorization: 'Bearer ' + storage.idToken
+  }
+});
+</code></pre>
+        </div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+          <pre><code class="language-javascript">var tokenValidator = require('express-jwt')
+
+app.use('/api/',  tokenValidator({
+  secret: new Buffer(process.env.CLIENT_SECRET, 'base64'),
+  audience: process.env.CLIENT_ID
+}));
+
+app.post('/api/change-email', function(req, res) {
+  // Only if a user has a token can arrive to this point
+  // Custom change email logic
+});
+</code></pre>
+        <p>From the server, we validate the <a href="https://docs.auth0.com/jwt">JWT Token</a></p>
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <h3>Saved tokens can only be accesable by JS</h3>
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <h3>We don't even have to worry about XSRF</h3>
+        </div>
+      </section>
+
+
+      <section data-bespoke-state="options">
+        <div class="content">
+          <h2>Option 2</h2>
           <div class="byline">
             <div class="classy">
-              therefore
+              Use
             </div>
           </div>
-          <h3>We're safe</h3>
+          <h3>Cookies</h3>
+          <div class="byline">
+            <div class="classy">
+              but also
+            </div>
+          </div>
+          <h3>send a XSRF Nounce </h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+        <pre data-line="2,3"><code class="language-markup">&lt;script&gt;
+  // This is printed by the server in the main HTML that will display the SPA
+  var xsrfToken = ${xsrfTokenValueFromServer}
+&lt;/script&gt;</code></pre>
+<p></p>
+          <pre><code class="language-markup">&lt;!-- This form will be rendered by the SPA as a template --&gt;
+&lt;form&gt;
+  &lt;input type=&quot;text&quot; id=&quot;email&quot;/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Click here to continue&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+<p></p>
+          <pre data-line="5-7"><code class="language-javascript">$.ajax({
+  url: '/api/change-email',
+  data: { email: form.email },
+  headers: {
+    // We send the CSRF token printed by the server
+    // No session info is needed since cookies are used
+    'x-xsrf-token': xsrfToken
+  }
+});
+</code></pre>
+        </div>
+      </section>
+
+      <section data-bespoke-state="code long">
+        <div class="content nofade">
+          <pre data-line="3-5,9,10"><code class="language-javascript">// First we render the Index.html for the SPA with the XSRF token
+app.get('/', function(req, res) {
+  res.render("index.html", {
+    xsrfTokenValueFromServer: createXsrfTokenFromSession()
+  });
+});
+
+app.post('/api/change-email', function(req, res) {
+  // Here we check the token
+  if (!validateXsrfTokenWithSession(req.headers['x-xsrf-token'])) {
+    res.status(400).text('Cheated form');
+  } else {
+    // Custom change email logic
+  }
+});
+</code></pre>
+        <p>From the server, first we print the XSRF in the <dfn>index.html</dfn> to the SPA</p>
+        <p>Then we verify that XSRF in the POST on the API</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <div class="unbrokenline"></div>
+          <h3>XSRF Nounce</h3>
+          <div class="byline">
+            <div class="classy">
+              assures that
+            </div>
+          </div>
+          <h3>the person POSTing the form</h3>
+          <div class="byline">
+            <div class="classy">
+              did it
+            </div>
+          </div>
+          <h3>from our WebApp</h3>
           <div class="unbrokenline"></div>
         </div>
       </section>
 
       <section>
+        <div class="content">
+          <div class="unbrokenline"></div>
+          <h3>The server</h3>
+          <div class="byline">
+            <div class="classy">
+              has to
+            </div>
+          </div>
+          <h3>intervene</h3>
+          <div class="byline">
+            <div class="classy">
+              since due to
+            </div>
+          </div>
+          <h3>Cookies</h3>
+          <div class="byline">
+            <div class="classy">
+              the server
+            </div>
+          </div>
+          <h3>has state</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="dump-elephant">
+        <div class="content"></div>
+      </section>
+
+
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuck says that
+            </div>
+          </div>
+          <h3>Tokens are easier to handle for XSRF</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuck thinks that
+            </div>
+          </div>
+          <h3>Stateless APIs</h3>
+          <div class="byline">
+            <div class="classy">
+              with
+            </div>
+          </div>
+          <h3>tokens</h3>
+          <div class="byline">
+            <div class="classy">
+              make more sense for
+            </div>
+          </div>
+          <h3>SPAs</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="chuck">
+        <div class="content">
+          <div class="byline">
+            <div class="classy">
+              Chuch suggests
+            </div>
+          </div>
+          <h3>Using tokens</h3>
+          <div class="byline">
+            <div class="classy">
+              and choosing
+            </div>
+          </div>
+          <h3>Option 1</h3>
+          <div class="unbrokenline"></div>
+        </div>
+      </section>
+
+      <section data-bespoke-state="subject-change">
+        <div class="content">
+          <h2>APIs</h2>
+        </div>
+      </section>
+
+      <section data-bespoke-state="subject-change">
         <div class="content">
           <h2>XSS</h2>
         </div>
