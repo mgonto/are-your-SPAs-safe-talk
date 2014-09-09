@@ -131,7 +131,7 @@ article.programming::before {
   background-image: url("../img/programming.gif");
 }
 
-article.programming, article.safari {
+article.programming, article.safari, article.bobby {
   background-color: white;
   opacity: 0.95;
 }
@@ -241,6 +241,14 @@ article.boom::before {
   filter: none;
   background-position: top;
   background-image: url("../img/boom.gif");
+}
+
+article.bobby::before {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+  background-size: contain;
+  background-image: url("../img/bobby.png");
 }
 
 article.boom-save::before {
