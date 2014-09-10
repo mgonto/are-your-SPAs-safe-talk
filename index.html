@@ -788,9 +788,11 @@ app.get('/users', validate.query(getUserValidationSchema), function (req, res) {
 
       <section>
         <div class="content">
+          <div class="unbrokenline"></div>
+          <h3>XSS</h3>
           <div class="byline">
             <div class="classy">
-              XSS means
+              means
             </div>
           </div>
           <h3>Inserting</h3>
@@ -799,19 +801,13 @@ app.get('/users', validate.query(getUserValidationSchema), function (req, res) {
               a
             </div>
           </div>
-          <h3>Javascript Snippet</h3>
+          <h3>JS Snippet</h3>
           <div class="byline">
             <div class="classy">
-              that can be
+              that will be
             </div>
           </div>
-          <h3>saved on the server</h3>
-          <div class="byline">
-            <div class="classy">
-              and run for
-            </div>
-          </div>
-          <h3>Several users</h3>
+          <h3>Server to other users</h3>
           <div class="unbrokenline"></div>
         </div>
       </section>
