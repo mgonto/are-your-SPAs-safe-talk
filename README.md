@@ -2,7 +2,7 @@
 
 This are the slides for the talk we're doing in Seattle Code Camp.
 
-You can see them at http://mgonto.github.io/are-your-SPAs-safe
+You can see them at http://mgonto.github.io/are-your-SPAs-safe-talk
 
 ## Thanks
 
