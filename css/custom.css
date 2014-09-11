@@ -86,6 +86,57 @@ pre[data-line] {
   font-size: 2em;
 }
 
+/* --- buttons ---- */
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  padding:1rem 2rem;
+  background:transparent;
+  border:3px solid #fff;
+  margin:1rem 0;
+  border-radius:4px;
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:1rem;
+}
+
+/* --- big labels ---- */
+
+.big-label {
+  font-size:1.5rem;
+}
+
+/* --- markup stuff ---- */
+
+pre {
+  position:relative;
+}
+
+pre.language-markup::before,
+pre.language-javascript::before {
+  width:100px;
+  height:40px;
+  line-height:40px;
+  position:absolute;
+  bottom:0;
+  right:0;
+  text-align:center;
+  font-size:1rem;
+  color:#fff;
+  background:#d35400;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  display:block;
+  content:'';
+  border-bottom-right-radius:6px;
+}
+
+pre.language-markup::before {
+  content:'HTML';
+}
+
+pre.language-javascript::before {
+  content:'JS';
+}
 /* ---- backgrounds ---- */
 article.start::before {
   -webkit-filter: blur(2.25px) grayscale(0.3) brightness(0.4);
@@ -154,7 +205,7 @@ article.old-web::before {
   -webkit-filter: none;
   -moz-filter: none;
   filter: none;
-  background-size: contain;
+  background-size: 80%;
   background-image: url("../img/SpaceJam.gif");
 }
 
@@ -162,7 +213,7 @@ article.current-web::before {
   -webkit-filter: none;
   -moz-filter: none;
   filter: none;
-  background-size: contain;
+  background-size: 80%;
   background-image: url("../img/Auth0.gif");
 }
 
